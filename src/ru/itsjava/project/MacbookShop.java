@@ -6,7 +6,7 @@ public class MacbookShop {
 
     public static void main(String[] args) {
         System.out.println("Добро пожаловать, у нас лучший магазин макбуков в мире"); //выводим на консоль приветствие
-        String[] items = new String[]{"Pro2020", "Air2015", "Ipad2016", "IphoneXS"}; //задаем начальный массив
+        String[] items = new String[]{"Pro2020", "Air2015", "air2017", "Ipad2016", "IphoneXS"}; //задаем начальный массив
         printItems(items);  //вызываем метод, который выводит на консоль товары
 
         printMenu();  //метод печатает меню для пользователя
@@ -20,14 +20,37 @@ public class MacbookShop {
                 items = addItem(items, scanner); //добавляем элемент ( сканнер нужен для считывания товара)
             } else if (menuNum == 3) {
                 items = buyItem(items, scanner);
+            } else if (menuNum == 6) {
+                ///Вывести все товары, которые начинаются на А.
+                printItemsStartedWithA(items);
+            } else if (menuNum == 7) {
+                items = sendItem(items, scanner);
             }
 
-            System.out.println("Введите номер меню: ");  // подсказака для пользователя (введите номер меню)
+            System.out.println("Введите номер меню: ");  // подсказка для пользователя (введите номер меню)
         }
+    }
 
+    private static String[] sendItem(String[] items, Scanner scanner) {
+        System.out.println("Введите адрес");
+        String address = scanner.next(); // считали адрес
+
+        String[] resArray = buyItem(items, scanner); //покупка товара
+        System.out.println("Спасибо, мы отправили по указанному адресу: " + address);
+
+        return resArray;
 
     }
 
+    public static void printItemsStartedWithA(String[] items) {
+        System.out.print("Вывод элементов, начинающихся на А:");
+        for (String item : items) {
+            if (item.substring(0, 1).equalsIgnoreCase("A")) {
+                System.out.print(item + " ");
+            }
+        }
+        System.out.println();
+    }
 
     // a b c d e f            d?
     // a b c e f
@@ -84,8 +107,8 @@ public class MacbookShop {
                 "3. Купить товар\n" +
                 "4. Проверить на наличие\n" +
                 "5. Отсортировать товары\n" +
-                "6.\n" +
-                "7.\n" +
+                "6. Вывести все товары, которые начинаются на А\n" +
+                "7. Отправить товар по адресу\n" +
                 "8.\n" +
                 "0. Выход");
     }
@@ -99,7 +122,10 @@ public class MacbookShop {
 //3. Купить товар
 //4. Проверить на наличие
 //5. Отсортировать товары
-//6.
-//7.
-//8.
+//6. Вывести в обратном порядке
+//7. Отправить по адресу (Вводит адрес после этого вы вызываете метод купить товар)
+//8. Вывести все товары, которые начинаются на А.
+//Проверить на наличие и если нет, то добавить товар
+//Вывести все макбуки
+//
 //0. Выход
