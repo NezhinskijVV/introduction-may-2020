@@ -12,7 +12,6 @@ public class RecursionPractice {
 //
 //        int num = console.nextInt();
 //        System.out.println("Факториал " + num + " = " + factorial(num));
-
 //        System.out.println("Факториал " + num + " = " + recursionFactorial(num));
 
         System.out.println("Найти индекс элемента в отсортрованном массиве");
@@ -40,7 +39,7 @@ public class RecursionPractice {
         }
         //[-1, 5, 8, 10, 25, 47, 49, 65, 100]
         // Загадал numForBinarySearch = 5
-        //array[midIndex] = 25
+        // array[midIndex] = 25
         return binarySearch(numForBinarySearch, begin, midIndex - 1, array);
     }
 
@@ -68,7 +67,6 @@ public class RecursionPractice {
         for (int i = 2; i <= num; i++) {
             res *= i;
         }
-
         return res;
     }
 
