@@ -20,6 +20,10 @@ public class MacbookShop {
                 items = addItem(items, scanner); //добавляем элемент ( сканнер нужен для считывания товара)
             } else if (menuNum == 3) {
                 items = buyItem(items, scanner);
+            } else if (menuNum == 4) {
+                containsItem(items, scanner);
+            } else if (menuNum == 5) {
+                sortingItems(items);
             } else if (menuNum == 6) {
                 ///Вывести все товары, которые начинаются на А.
                 printItemsStartedWithA(items);
@@ -31,6 +35,36 @@ public class MacbookShop {
         }
     }
 
+    private static void containsItem(String[] items, Scanner scanner) {
+        System.out.println("Введите товар и мы проверим есть ли он в магазине");
+        String item = scanner.next(); //считываем товар
+
+        boolean isFinding = false;   //переменная которая проверяет вхождение товара
+        for (int i = 0; i < items.length; i++) {  //пробегаемся по всем товарам
+            if (items[i].equalsIgnoreCase(item)) { //проверяем на совпадение с игнорированием регистра
+                System.out.println("Мы нашли товар " + item); // ура! мы нашли товар
+                isFinding = true; //изенили значение переменной
+            }
+        }
+
+        if (!isFinding) {  //если переменная принимает значение false ( те не нашли товар(
+            System.out.println("К сожалению, мы не нашли Ваш товар("); //выводи сообщение
+        }
+    }
+
+    private static void sortingItems(String[] items) {
+        //сортировка
+        for (int i = 0; i < items.length; i++) {
+            for (int j = 0; j < items.length - i - 1; j++) {
+                if (items[j].charAt(0) > items[j + 1].charAt(0)) {
+                    String temp = items[j + 1]; //меняем местами соседние элементы
+                    items[j + 1] = items[j];
+                    items[j] = temp;
+                }
+            }
+        }
+    }
+
     private static String[] sendItem(String[] items, Scanner scanner) {
         System.out.println("Введите адрес");
         String address = scanner.next(); // считали адрес
@@ -39,7 +73,6 @@ public class MacbookShop {
         System.out.println("Спасибо, мы отправили по указанному адресу: " + address);
 
         return resArray;
-
     }
 
     public static void printItemsStartedWithA(String[] items) {
